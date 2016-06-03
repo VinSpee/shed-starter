@@ -1,0 +1,99 @@
+
+:root {
+	--white: #ffffff;
+	--black: #000000;
+	--blue: #0F1A64;
+
+	--f-f-sans: Helvetica Neue, sans-serif;
+	--f-f-serif: Georgia, serif;
+	--f-f-mono: Monaco, monospace;
+}
+
+@custom-media --mq-xs (min-width: 20em);
+@custom-media --mq-sm (min-width: 30em);
+@custom-media --mq-md (min-width: 37em);
+@custom-media --mq-lg (min-width: 50em);
+@custom-media --mq-xl (min-width: 75em);
+
+@each $color in blue, white, black {
+	.c\:$color {
+		color: var(--$color);
+	}
+
+	.bg\:$color,
+	.bg-c\:$color {
+		background: var(--$color);
+
+	}
+
+	.hover\/c\:$color:hover {
+		color: var(--$color);
+	}
+
+	.hover\/bg\:$color:hover,
+	.hover\/bg-c\:$color:hover {
+		background: var(--$color);
+	}
+
+	@for $i from 1 to 9 {
+		.bg\:$color\.$i {
+			background-color: color(var(--$color) alpha(calc($i / 10)));
+		}
+
+		.c\:$color\.$i {
+			color: color(var(--$color) alpha(calc($i / 10)));
+		}
+
+		.hover\/bg\:$color\.$i:hover {
+			background-color: color(var(--$color) alpha(calc($i / 10)));
+		}
+
+		.hover\/c\:$color\.$i:hover {
+			color: color(var(--$color) alpha(calc($i / 10)));
+		}
+	}
+
+	@each $mq in xs, sm, md, lg, xl {
+		@media(--mq-$mq) {
+			.c\:$color\@$mq {
+				color: var(--$color);
+			}
+
+			.bg\:$color,
+			.bg-c\:$color\@$mq {
+				background: var(--$color);
+			}
+
+			.hover\/c\:$color\@$mq:hover {
+				color: var(--$color);
+			}
+
+			.hover\/bg\:$color\@$mq:hover,
+			.hover\/bg-c\:$color\@$mq:hover {
+				background: var(--$color);
+			}
+
+			@for $i from 1 to 9 {
+				.bg\:$color\.$i\@$mq {
+					background-color: color(var(--$color) alpha(calc($i / 10)));
+				}
+
+				.c\:$color\.$i\@$mq {
+					color: color(var(--$color) alpha(calc($i / 10)));
+				}
+
+				.hover\/bg\:$color\.$i\@$mq:hover {
+					background-color: color(var(--$color) alpha(calc($i / 10)));
+				}
+
+				.hover\/c\:$color\.$i\@$mq:hover {
+					color: color(var(--$color) alpha(calc($i / 10)));
+				}
+			}
+		}
+	}
+
+	.b\:$(color) {
+		border: 1px solid var(--$(color));
+	}
+}

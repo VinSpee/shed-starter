@@ -1,0 +1,53 @@
+{
+  "name": "shed-starter",
+  "version": "0.1.0",
+  "description": "Starter kit for rapid prototyping with shed.css",
+  "main": "index.js",
+  "config": {
+    "css_entry": "app/styles/index.css",
+    "css_out": "dist/styles/",
+    "html_in": "app/*.html",
+    "out": "dist/"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "css:compile": "postcss -u postcss-import -u postcss-for -u postcss-each -u postcss-conditionals -u postcss-cssnext",
+    "css:watch": "npm run css:compile -- $npm_package_config_css_entry -w -d $npm_package_config_css_out",
+    "css:build": "npm run css:compile -- $npm_package_config_css_entry -d $npm_package_config_css_out",
+    "html:compile": "cp $npm_package_config_html_in $npm_package_config_out",
+    "html:watch": "chokidar $npm_package_config_html_in -c 'npm run html:compile'",
+    "serve": "browser-sync start --server $npm_package_config_out --files $npm_package_config_out --port 1337 --no-open",
+    "start": "npm-run-all html:compile css:build && npm-run-all -p *:watch serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VinSpee/shed-starter.git"
+  },
+  "keywords": [
+    "shed",
+    "css",
+    "prototyping",
+    "utilities",
+    "starter"
+  ],
+  "author": "Vince Speelman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VinSpee/shed-starter/issues"
+  },
+  "homepage": "https://github.com/VinSpee/shed-starter#readme",
+  "devDependencies": {
+    "browser-sync": "2.12.10",
+    "chokidar-cli": "1.2.0",
+    "npm-run-all": "2.1.1",
+    "postcss": "5.0.21",
+    "postcss-cli": "2.5.2",
+    "postcss-conditionals": "2.0.2",
+    "postcss-cssnext": "2.5.2",
+    "postcss-each": "0.9.3",
+    "postcss-for": "2.0.3",
+    "postcss-import": "8.1.2",
+    "sanitize.css": "3.3.0",
+    "shed-css": "file:shed-css"
+  }
+}
