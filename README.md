@@ -1,5 +1,7 @@
 # shed.css starter kit
 
+https://github.com/tedconf/shed-css
+
 1. clone this repo
 2. `npm i`
 3. `npm start`
